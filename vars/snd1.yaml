@@ -1,0 +1,45 @@
+variables:
+  environment: SND
+  environmentTag: SND
+  environmentLower: snd
+  containerName: 'trade-exportscore-trp'
+  containerJobName: 'trade-exportscore-trp-trigger'
+
+  # KEYVAULT
+  keyVaultSku: Standard
+  servicePrincipalObjectId: b33b6381-9687-4e26-a081-d6ee4f37eeee
+
+  # NETWORKING
+  vnet01AddressPrefix01: 10.179.35.0/24
+  vnet01AddressPrefix02: 10.179.48.0/23
+  vnet01AddressPrefix03: 10.179.46.0/25
+  vnet01Subnet1Address: 10.179.35.0/24
+  vnet01Subnet2Address: 10.179.48.0/23
+  vnet01Subnet3Address: 10.179.46.0/25
+
+  # SERVICE CONNECTION
+  azureResourceManagerConnection: AZR-EXP-SND1
+  azureSubscription: AZR-EXP-SND1
+  subscriptionId: 9f93a159-97af-42db-9041-6426ae76c837
+  tenantId: 770a2450-0227-4c62-90c7-4e38537f1102
+
+  # DATABASE
+  postgreSqlTier: "GeneralPurpose"
+  postgreSqlSkuName: "Standard_D4ds_v5"
+  postgreSqlStorageSizeGB: 128
+  postgreSqlHighAvailability: "Disabled"
+  postgreSqlAvailabilityZone: ""
+
+  # LOG ANALYICS
+  logAnalyticsSku: 'PerGB2018'
+
+  # CONTAINER REGISTRY
+  acrSku: Premium
+  azureADAuthenticationAsArmPolicyStatus: enabled
+  exportPolicyStatus: enabled
+  softDeletePolicyStatus: disabled
+  trustPolicyStatus: enabled
+  
+  # CONTAINER APP
+  containerCpu: '2'
+  containerMemory: '4Gi'
