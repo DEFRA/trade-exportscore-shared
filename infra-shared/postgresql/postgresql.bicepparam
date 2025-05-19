@@ -34,7 +34,7 @@ param privateDnsZone = {
 
 param databases = [
   {
-    name: 'eutd-trade-exports-core-trade-exportscore-trp'
+    name: 'eutd-trade-exports-core-trade-exportscore'
   }
 ]
 

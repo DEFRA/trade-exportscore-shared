@@ -170,4 +170,4 @@ variables:
   msServiceConnectionName: AZR-MST-PrivateLinkDNS
 
    # SERVICE BUS
-  triggerServiceBusQueueName: "trp-calculation-create"
+  triggerServiceBusQueueName: "calculation-create"
