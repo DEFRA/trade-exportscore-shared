@@ -1,0 +1,73 @@
+name: 'V1-B$(Date:yyyyMMdd)-$(BuildID)'
+
+trigger: none
+
+resources:
+  repositories:
+    - repository: PipelineCommon
+      name: DEFRA-DEVOPS-COMMON/Defra.Pipeline.Common
+      type: git
+      ref: refs/tags/Release-v6-latest
+
+extends:
+  template: /templates/pipelines/common-scripts-deploy.yaml@PipelineCommon
+  parameters:
+    variableFiles:
+      - /infra/vars/common.yaml@self
+      - /infra/vars/{environment}.yaml@self
+    regionalVariableFiles:
+      - /infra/vars/regional/{environment}-{region}.yaml@self
+    environments:
+      - name: 'dev1'
+        developmentEnvironment: true
+        subscriptionId: subscriptionId
+        serviceConnection: AZR-EXP-DEV1
+        tenantName: Defra
+        tenantId: tenantId
+        azureRegions:
+          isSecondaryRegionDeploymentActive: false
+          primary: UKSouth
+        deploymentBranches:
+          - '*'
+      - name: 'snd1'
+        developmentEnvironment: false
+        subscriptionId: subscriptionId
+        serviceConnection: AZR-EXP-SND1
+        tenantName: Defra
+        tenantId: tenantId
+        azureRegions:
+          isSecondaryRegionDeploymentActive: false
+          primary: UKSouth
+        deploymentBranches:
+          - 'refs/heads/main'
+      - name: 'pre1'
+        developmentEnvironment: false
+        subscriptionId: subscriptionId
+        serviceConnection: AZR-EXP-PRE1
+        tenantName: Defra
+        tenantId: tenantId
+        azureRegions:
+          isSecondaryRegionDeploymentActive: false
+          primary: UKSouth
+        deploymentBranches:
+          - 'refs/heads/main'
+      - name: 'prd1'
+        developmentEnvironment: false
+        subscriptionId: subscriptionId
+        serviceConnection: AZR-EXP-PRD1
+        tenantName: Defra
+        tenantId: tenantId
+        azureRegions:
+          isSecondaryRegionDeploymentActive: false
+          primary: UKSouth
+        deploymentBranches:
+          - 'refs/heads/main'
+    scriptsList: 
+      - displayName: 'Create Azure Metric Alerts'
+        scriptPath: 'CreateMetricAlertFunctions.ps1@PipelineCommon'
+        scriptArguments: >-
+          -manifestFilePath "./infra/monitoring/monitoring_config.json"
+        type: AzurePowerShell
+        failOnStandardError: true
+        filePathsForTransform:
+          - infra/monitoring/monitoring_config.json

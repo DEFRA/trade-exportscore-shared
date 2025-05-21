@@ -1,0 +1,36 @@
+{
+    "environment": "#{{ environment }}",
+    "subscriptionId": "#{{ subscriptionId }}",
+    "actionContext": {
+        "groupName": "TRP Support",
+        "groupShortName": "TRP",
+        "groupResourceGroup": "#{{ environment }}EXP#{{ nc-function-infrastructure }}#{{ nc-resource-resourcegroup }}1401"
+    },
+    "alertRecipientPolicy": {
+        "productionEnvironment": {
+            "name": "EmailPolicy",
+            "emailRecipients": [
+                "dl-trade-trp-support@defra.gov.uk"
+            ]
+        },
+        "nonProductionEnvironment": {
+            "name": "EmailPolicy",
+            "emailRecipients": [
+                "dl-trade-trp-support@defra.gov.uk"
+            ]
+        }
+    },
+    "monitoredResources": {
+        "appInsights": [
+            {
+                "name": "#{{ environment }}EXP#{{ nc-function-infrastructure }}#{{ nc-resource-appinsights }}1401",
+                "resourceGroup": "#{{ environment }}EXP#{{ nc-function-infrastructure }}#{{ nc-resource-resourcegroup }}1401",
+                "cloudRoleNames": [
+                    "trade-exportscore-trp",
+                    "trade-exportscore-trp-trigger"
+                ]
+            }
+        ],
+        "appInsightsAlertPolicyName": "StandardAppInsightsAlertPolicy"
+    }
+}

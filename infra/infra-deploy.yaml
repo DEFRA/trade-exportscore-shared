@@ -14,7 +14,7 @@ trigger:
       - "*"
   paths:
     include: 
-      - infra-shared/*
+      - infra/*
 
 pr:
   branches:
@@ -22,7 +22,7 @@ pr:
       - main
   paths:
     include:
-      - infra-shared/*
+      - infra/*
 
 resources:
   repositories:
@@ -45,12 +45,12 @@ extends:
       - name: TRP
         templates:
           - name: log-analytics-workspace
-            path: infra-shared/operational-insights
+            path: infra/operational-insights
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
           - name: service-bus
-            path: infra-shared/service-bus
+            path: infra/service-bus
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
@@ -69,7 +69,7 @@ extends:
                   -Ttl 120
                   -UpdateAllDnsZones 1
           - name: key-vault
-            path: infra-shared/key-vault
+            path: infra/key-vault
             type: bicep
             scope: 'Resource Group'
             postDeployScriptsList:
@@ -86,7 +86,7 @@ extends:
                   -UpdateAllDnsZones 1
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
           - name: container-registry
-            path: infra-shared/container-registry
+            path: infra/container-registry
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
@@ -105,17 +105,17 @@ extends:
                   -Ttl 120
                   -UpdateAllDnsZones 1
           - name: managed-environment
-            path: infra-shared/managed-environment
+            path: infra/managed-environment
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
           - name: postgresql
-            path: infra-shared/postgresql
+            path: infra/postgresql
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
           - name: application-insights
-            path: infra-shared/application-insights
+            path: infra/application-insights
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
