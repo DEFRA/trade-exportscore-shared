@@ -14,7 +14,7 @@ trigger:
       - "*"
   paths:
     include: 
-      - infra/*
+      - infra-shared/*
 
 pr:
   branches:
@@ -22,7 +22,7 @@ pr:
       - main
   paths:
     include:
-      - infra/*
+      - infra-shared/*
 
 resources:
   repositories:
@@ -37,20 +37,20 @@ extends:
     deployFromFeature: ${{ parameters.deployFromFeature }}
     privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV3"
     variableFiles:
-      - /infra/vars/common.yaml@self
-      - /infra/vars/{environment}.yaml@self
+      - /vars/common.yaml@self
+      - /vars/{environment}.yaml@self
     regionalVariableFiles:
-      - /infra/vars/regional/{environment}-{region}.yaml@self
+      - /vars/regional/{environment}-{region}.yaml@self
     groupedTemplates:
       - name: TRP
         templates:
           - name: log-analytics-workspace
-            path: infra/operational-insights
+            path: infra-shared/operational-insights
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: service-bus
-            path: infra/service-bus
+            path: infra-shared/service-bus
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
@@ -69,7 +69,7 @@ extends:
                   -Ttl 120
                   -UpdateAllDnsZones 1
           - name: key-vault
-            path: infra/key-vault
+            path: infra-shared/key-vault
             type: bicep
             scope: 'Resource Group'
             postDeployScriptsList:
@@ -86,7 +86,7 @@ extends:
                   -UpdateAllDnsZones 1
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: container-registry
-            path: infra/container-registry
+            path: infra-shared/container-registry
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
@@ -105,17 +105,17 @@ extends:
                   -Ttl 120
                   -UpdateAllDnsZones 1
           - name: managed-environment
-            path: infra/managed-environment
+            path: infra-shared/managed-environment
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: postgresql
-            path: infra/postgresql
+            path: infra-shared/postgresql
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: application-insights
-            path: infra/application-insights
+            path: infra-shared/application-insights
             type: bicep
             scope: 'Resource Group'
             resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
