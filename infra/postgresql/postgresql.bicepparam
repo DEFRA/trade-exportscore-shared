@@ -10,7 +10,7 @@ param tags = {
   Repo: '#{{ Build.Repository.Uri }}'
 }
 
-param laWorkspaceName = '#{{ environment }}#{{ project }}#{{ nc_infrastructure }}#{{ nc_loganalytics }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
+param laWorkspaceName = '#{{ environment }}#{{ project }}#{{ nc_infrastructure }}#{{ nc_loganalytics }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
 
 param server = {
   storageSizeGB: '#{{ postgreSqlStorageSizeGB }}'
@@ -18,7 +18,7 @@ param server = {
   skuName: '#{{ postgreSqlSkuName }}'
   highAvailability: '#{{ postgreSqlHighAvailability }}'
   availabilityZone: '#{{ postgreSqlAvailabilityZone }}'
-  name: '#{{ environmentLower }}#{{ project-lower }}#{{ nc-function-database-lower }}#{{ nc-resource-postgres }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
+  name: '#{{ environmentLower }}#{{ project-lower }}#{{ nc-function-database-lower }}#{{ nc-resource-postgres }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
 }
 
 param vnet = {
@@ -39,6 +39,6 @@ param databases = [
 ]
 
 param location = '#{{ location }}'
-param managedIdentityName = '#{{ environment }}#{{ project }}#{{ nc-function-database }}#{{ nc_identity }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
+param managedIdentityName = '#{{ environment }}#{{ project }}#{{ nc-function-database }}#{{ nc_identity }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
 param servicePrincipalName = 'ADO-DefraGovUK-#{{ azureResourceManagerConnection }}'
 param servicePrincipalObjectId = '#{{ servicePrincipalObjectId }}'
