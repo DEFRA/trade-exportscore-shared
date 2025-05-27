@@ -1,0 +1,93 @@
+name: $(BuildID)
+
+parameters:
+  - name: deployFromFeature
+    displayName: "Deploy from Feature Branch"
+    type: boolean
+    default: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    include: 
+      - infra/network/*
+      - infra/private-dns-zone/*
+      - infra/vars/*
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - infra/network/*
+      - infra/private-dns-zone/*
+      - infra/vars/*
+
+resources:
+  repositories:
+    - repository: PipelineCommon
+      name: DEFRA-DEVOPS-COMMON/Defra.Pipeline.Common
+      type: git
+
+extends:
+  template: /templates/pipelines/common-infrastructure-deploy.yaml@PipelineCommon
+  parameters:
+    projectName: trade-exportscore-trp
+    deployFromFeature: ${{ parameters.deployFromFeature }}
+    privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV3"
+    variableFiles:
+      - /infra/vars/common.yaml@self
+      - /infra/vars/{environment}.yaml@self
+    regionalVariableFiles:
+      - /infra/vars/regional/{environment}-{region}.yaml@self
+    groupedTemplates:
+      - name: TRP
+        templates:
+          - name: network
+            path: infra/network
+            type: 'bicep'
+            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
+            scope: 'Resource Group'
+          - name: flexible-server-zone
+            path: infra/private-dns-zone
+            type: 'bicep'
+            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
+            scope: 'Resource Group'
+
+    environments:
+      - name: dev1
+        serviceConnection: AZR-EXP-DEV1
+        deploymentBranches:
+          - "refs/heads/main"
+        developmentEnvironment: true
+        privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV3"
+        azureRegions:
+          primary: "UKSouth"
+      - name: snd1
+        dependsOn: dev1
+        serviceConnection: AZR-EXP-SND1
+        deploymentBranches:
+          - "refs/heads/main"
+        privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV3"
+        azureRegions:
+          primary: "UKSouth"
+      - name: pre1
+        dependsOn: snd1
+        serviceConnection: AZR-EXP-PRE1
+        deploymentBranches:
+          - "refs/heads/main"
+        privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV5"
+        azureRegions:
+          primary: "UKSouth"
+      - name: prd1
+        dependsOn: pre1
+        serviceConnection: AZR-EXP-PRD1
+        deploymentBranches:
+          - "refs/heads/main"
+        privateAgentName: "DEFRA-COMMON-ubuntu2004-SSV5"
+        azureRegions:
+          primary: "UKSouth"
