@@ -6,6 +6,18 @@ parameters:
     type: boolean
     default: false
 
+  - name: prj
+    displayName: Change for deploying to REF.
+    type: string
+    values:
+      - TRP
+      - PLP
+    default: TRP
+
+variables:
+  prj: ${{ parameters.prj }}
+  prj-lower: ${{ lower(parameters.prj) }}
+
 
 trigger:
   batch: true
@@ -48,19 +60,19 @@ extends:
             path: infra/operational-insights
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: service-bus
             path: infra/service-bus
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
             postDeployScriptsList:
               - displayName: Resolve Private Endpoint IP for Service Bus
                 scriptRepo: PipelineCommonScripts
                 scriptPath: "Get-ResourcePrivateEndPointsDnsRecordsAsJson.ps1@PipelineCommon"
                 ScriptArguments: >
-                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
-                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_servicebus)$(subscriptionNumber)$(regionNumber)08'
+                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
+                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_servicebus)$(subscriptionNumber)$(regionNumber)01'
               - displayName: Set DNS record for Service Bus
                 scriptPath: "Set-PrivateDnsRecordSet.ps1@PipelineCommon"
                 scriptRepo: PipelineCommonScripts
@@ -76,27 +88,27 @@ extends:
               - displayName: Resolve Private Endpoint IP for Key Vault
                 scriptPath: "Get-ResourcePrivateEndPointsDnsRecordsAsJson.ps1@PipelineCommon"
                 ScriptArguments: >
-                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
-                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_keyvault)$(subscriptionNumber)$(regionNumber)08'
+                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
+                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_keyvault)$(subscriptionNumber)$(regionNumber)01'
               - displayName: Set DNS record for Key Vault
                 scriptPath: "Set-PrivateDnsRecordSet.ps1@PipelineCommon"
                 serviceConnectionVariableName: msServiceConnectionName
                 ScriptArguments: >
                   -Ttl 120
                   -UpdateAllDnsZones 1
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: container-registry
             path: infra/container-registry
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
             postDeployScriptsList:
               - displayName: Resolve Private Endpoint IP for Container Registry
                 scriptRepo: PipelineCommonScripts
                 scriptPath: "Get-ResourcePrivateEndPointsDnsRecordsAsJson.ps1@PipelineCommon"
                 ScriptArguments: >
-                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
-                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_containerregistry)$(subscriptionNumber)$(regionNumber)08'
+                  -ResourceGroupName '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
+                  -ResourceName '$(environment)$(project)$(nc-function-infrastructure)$(nc_containerregistry)$(subscriptionNumber)$(regionNumber)01'
               - displayName: Set DNS record for Container Registry
                 scriptPath: "Set-PrivateDnsRecordSet.ps1@PipelineCommon"
                 scriptRepo: PipelineCommonScripts
@@ -108,17 +120,17 @@ extends:
             path: infra/managed-environment
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: postgresql
             path: infra/postgresql
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
           - name: application-insights
             path: infra/application-insights
             type: bicep
             scope: 'Resource Group'
-            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-infrastructure)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
 
     environments:
       - name: dev1

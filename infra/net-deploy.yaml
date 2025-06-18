@@ -50,12 +50,12 @@ extends:
           - name: network
             path: infra/network
             type: 'bicep'
-            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
             scope: 'Resource Group'
           - name: flexible-server-zone
             path: infra/private-dns-zone
             type: 'bicep'
-            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)08'
+            resourceGroupName: '$(environment)$(project)$(nc-function-network)$(nc-resource-resourcegroup)$(subscriptionNumber)$(regionNumber)01'
             scope: 'Resource Group'
 
     environments:

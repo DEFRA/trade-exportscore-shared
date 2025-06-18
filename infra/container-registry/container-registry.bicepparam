@@ -1,6 +1,6 @@
 using './container-registry.bicep'
 
-param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_containerregistry }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_containerregistry }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 param project = '#{{ project }}'
 param env = '#{{ environment }}'
 param location = '#{{ location }}'

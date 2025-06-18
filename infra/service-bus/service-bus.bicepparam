@@ -1,6 +1,6 @@
 using './service-bus.bicep'
 
-param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_servicebus }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_servicebus }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 param location = '#{{ location }}'
 param serviceBusQueueName = '#{{ containerName }}'
 param triggerServiceBusQueueName = '#{{ triggerServiceBusQueueName }}'

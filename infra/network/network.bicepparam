@@ -16,14 +16,14 @@ param additionalNsgRules = []
 
 param nsgPrefix = '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc_nsg }}#{{ subscriptionNumber }}#{{ regionNumber }}'
 
-param routeTableName = 'UDR-Spoke-Route-From-#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc_virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+param routeTableName = 'UDR-Spoke-Route-From-#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc_virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 
 param vnetObject = {
-  name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+  name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
   addressPrefixes: ['#{{ vnet01AddressPrefix01 }}', '#{{ vnet01AddressPrefix02 }}', '#{{ vnet01AddressPrefix03 }}']
   subnetsArray: [
     {
-      name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-subnet }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+      name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-subnet }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
       addressPrefix: '#{{ vnet01Subnet1Address }}'
       privateEndpointNetworkPolicies: 'Enabled'
       privateLinkServiceNetworkPolicies: 'Enabled'

@@ -2,8 +2,8 @@ variables:
   environment: PRE
   environmentTag: PRE
   environmentLower: pre
-  containerName: 'trade-exportscore-trp'
-  containerJobName: 'trade-exportscore-trp-trigger'
+  containerName: 'trade-exportscore-$(prj)'
+  containerJobName: 'trade-exportscore-$(prj)-trigger'
 
   # KEYVAULT
   keyVaultSku: Standard

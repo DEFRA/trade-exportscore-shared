@@ -11,8 +11,8 @@ param tags = {
 }
 
 param vnet = {
-  name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
-  resourceGroup: '#{{ environment }}#{{ project }}#{{ nc_network }}#{{ nc_resourcegroup }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+  name: '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
+  resourceGroup: '#{{ environment }}#{{ project }}#{{ nc_network }}#{{ nc_resourcegroup }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 }
 
-param privateDnsZonePrefix = '#{{ environment }}#{{ project }}#{{ nc_private_dns_zone }}#{{ nc_resource_dnszone }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+param privateDnsZonePrefix = '#{{ environment }}#{{ project }}#{{ nc_private_dns_zone }}#{{ nc_resource_dnszone }}#{{ subscriptionNumber }}#{{ regionNumber }}01'

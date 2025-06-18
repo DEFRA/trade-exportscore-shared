@@ -1,6 +1,6 @@
 using './log-analytics-workspace.bicep'
 
-param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_loganalytics }}#{{ subscriptionNumber }}#{{ regionNumber }}08'
+param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_loganalytics }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 param skuName = '#{{ logAnalyticsSku }}'
 
 param location = '#{{ location }}'
