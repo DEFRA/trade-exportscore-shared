@@ -22,9 +22,9 @@ param servicePrincipalObjectId string
 param servicePrincipalName string
 param laWorkspaceName string
 param privateDnsZone object
-param databases {
-  name: string
-}[]
+// param databases {
+//   name: string
+// }[]
 
 resource virtual_network 'Microsoft.Network/virtualNetworks@2023-05-01' existing = {
   name: vnet.name
@@ -85,10 +85,10 @@ module flexibleServerDeployment 'br/SharedDefraRegistry:db-for-postgre-sql.flexi
       '${resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', toLower(managedIdentityName))}': {
       }
     }
-    databases: [
-      for db in databases: {
-        name: db.name
-      }
-    ]
+    // databases: [
+    //   for db in databases: {
+    //     name: db.name
+    //   }
+    // ]
   }
 }

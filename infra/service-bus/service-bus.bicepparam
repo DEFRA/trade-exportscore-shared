@@ -2,8 +2,8 @@ using './service-bus.bicep'
 
 param name = '#{{ environment }}#{{ project }}#{{ nc-function-infrastructure }}#{{ nc_servicebus }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 param location = '#{{ location }}'
-param serviceBusQueueName = '#{{ containerName }}'
-param triggerServiceBusQueueName = '#{{ triggerServiceBusQueueName }}'
+// param serviceBusQueueName = '#{{ containerName }}'
+// param triggerServiceBusQueueName = '#{{ triggerServiceBusQueueName }}'
 param skuName = 'Premium'
 
 param vnetName = '#{{ environment }}#{{ project }}#{{ nc-function-network }}#{{ nc-resource-virtualnetwork }}#{{ subscriptionNumber }}#{{ regionNumber }}01'

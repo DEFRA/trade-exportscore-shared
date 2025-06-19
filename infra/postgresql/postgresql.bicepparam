@@ -32,11 +32,11 @@ param privateDnsZone = {
   resourceGroup: '#{{ environment }}#{{ project }}#{{ nc_network }}#{{ nc_resourcegroup }}#{{ subscriptionNumber }}#{{ regionNumber }}01'
 }
 
-param databases = [
-  {
-    name: 'eutd-trade-exports-core-trade-exportscore'
-  }
-]
+// param databases = [
+//   {
+//     name: 'eutd-trade-exports-core-trade-exportscore'
+//   }
+// ]
 
 param location = '#{{ location }}'
 param managedIdentityName = '#{{ environment }}#{{ project }}#{{ nc-function-database }}#{{ nc_identity }}#{{ subscriptionNumber }}#{{ regionNumber }}01'

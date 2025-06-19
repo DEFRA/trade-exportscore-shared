@@ -8,8 +8,8 @@ param location string
 param createdDate string = utcNow('yyyy-MM-dd')
 param roleAssignments array = []
 param skuName string
-param serviceBusQueueName string
-param triggerServiceBusQueueName string
+// param serviceBusQueueName string
+// param triggerServiceBusQueueName string
 
 // Tags
 param environmentTag string
@@ -55,47 +55,47 @@ module serviceBus 'br/public:avm/res/service-bus/namespace:0.13.0' = {
       CreatedDate: createdDate
       Tier: 'Shared'
     }
-    authorizationRules: [
-      {
-        name: 'RootManageSharedAccessKey'
-        rights: [
-          'Listen'
-          'Manage'
-          'Send'
-        ]
-      }
-    ]
-    enableTelemetry: true
-    queues: [
-      {
-        authorizationRules: [
-          {
-            name: 'RootManageSharedAccessKeyQueue'
-            rights: [
-              'Listen'
-              'Manage'
-              'Send'
-            ]
-          }
-        ]
-        name: serviceBusQueueName
-        roleAssignments: roleAssignments // Reused parent resource roleAssignements for testing, can be split for finer control
-      }
-      {
-        authorizationRules: [
-          {
-            name: 'RootManageSharedAccessKeyQueue'
-            rights: [
-              'Listen'
-              'Manage'
-              'Send'
-            ]
-          }
-        ]
-        name: triggerServiceBusQueueName
-        roleAssignments: roleAssignments // Reused parent resource roleAssignements for testing, can be split for finer control
-      }
-    ]
+    // authorizationRules: [
+    //   {
+    //     name: 'RootManageSharedAccessKey'
+    //     rights: [
+    //       'Listen'
+    //       'Manage'
+    //       'Send'
+    //     ]
+    //   }
+    // ]
+    // enableTelemetry: true
+    // queues: [
+    //   {
+    //     authorizationRules: [
+    //       {
+    //         name: 'RootManageSharedAccessKeyQueue'
+    //         rights: [
+    //           'Listen'
+    //           'Manage'
+    //           'Send'
+    //         ]
+    //       }
+    //     ]
+    //     name: serviceBusQueueName
+    //     roleAssignments: roleAssignments // Reused parent resource roleAssignements for testing, can be split for finer control
+    //   }
+    //   {
+    //     authorizationRules: [
+    //       {
+    //         name: 'RootManageSharedAccessKeyQueue'
+    //         rights: [
+    //           'Listen'
+    //           'Manage'
+    //           'Send'
+    //         ]
+    //       }
+    //     ]
+    //     name: triggerServiceBusQueueName
+    //     roleAssignments: roleAssignments // Reused parent resource roleAssignements for testing, can be split for finer control
+    //   }
+    // ]
     skuObject: {
       name: skuName
     }
