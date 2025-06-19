@@ -6,17 +6,6 @@ parameters:
     type: boolean
     default: false
 
-  - name: prj
-    displayName: Change for deploying to REF.
-    type: string
-    values:
-      - TRP
-      - PLP
-    default: TRP
-
-variables:
-  prj: ${{ parameters.prj }}
-  prj-lower: ${{ lower(parameters.prj) }}
 
 
 trigger:
